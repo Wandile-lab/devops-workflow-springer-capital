@@ -1,0 +1,30 @@
+name: DevOps Intern CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Run Python script
+        run: python hello.py
+
+      - name: Test shell script
+        run: |
+          chmod +x scripts/sysinfo.sh
+          ./scripts/sysinfo.sh
